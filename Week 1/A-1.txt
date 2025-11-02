@@ -1,0 +1,21 @@
+//11. Container With Most Water
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int start = 0, end = height.size() - 1;
+        int max_water = INT_MIN, curr = 0;
+
+        while(start < end) {
+            curr = (end - start) * min(height[start], height[end]);
+            max_water = max(max_water, curr);
+
+            if(height[start] < height[end]) start++;
+            else end--;
+        }
+
+        return max_water;
+    }
+};
+
+//https://leetcode.com/problems/container-with-most-water/submissions/1792313284

@@ -1,0 +1,30 @@
+//263. Ugly Number
+
+class Solution {
+public:
+    bool isUgly(int n) {
+        if(n == 0) return false;
+        
+        int twos = powerPresent(2, n);
+        int threes = powerPresent(3, n);
+        int fives = powerPresent(5, n);
+
+        n /= pow(2, twos);
+        n /= pow(3, threes);
+        n /= pow(5, fives);
+
+        if(n == 1) return true;
+        return false;
+    }
+    
+    int powerPresent(int n, int num) {
+        int count = 0;
+        while(num % n == 0) {
+            count++;
+            num /= n;
+        }
+        return count;
+    }
+};
+
+//https://leetcode.com/problems/ugly-number/submissions/1810851089
